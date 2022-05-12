@@ -54,10 +54,36 @@ function runTest(left, right, out, idx) {
 function diff(left, right) {
 	// REMOVE FROM LEFT, ADD TO RIGHT, COPY
 
-	//r_pointer = 0
-	//for each line in left
-	//	for each line in right beyond r_pointer
-	return [COPY, COPY, COPY, COPY];
+	var out  = [];
+	var r_pointer = 0;
+	// for each line1 in left
+	for (var l=0; l<left.length; l++) {
+		var line1 = left[l];
+		var found = false;
+
+		//	for each line2 in right beyond r_pointer
+		for (var r=r_pointer; r<right.length; r++) {
+			var line2 = right[r];
+
+			if (line2 === line1) {
+				for (var i=0; i<r-r_pointer; i++) {
+					out.push(ADD);
+				}
+				out.push(COPY);
+			    r_pointer = r + 1;
+			    found = true;
+				break;
+			}
+		}
+		if (!found) {
+			out.push(DELETE);
+		}
+	}
+	for (var r = r_pointer; r < right.length; r++){
+		out.push(ADD);
+	}
+
+	return out;
 }
 
 runTests();
