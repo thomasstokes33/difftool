@@ -20,9 +20,29 @@ const TEST_DATA = [{
 	'right':[],
 	'out': [DELETE, DELETE, DELETE, DELETE]
 	},{
+	'left':[],
+	'right':["", "", "", ""],
+	'out': [ADD, ADD, ADD, ADD]
+	},{
 	'left':["a", "b"],
 	'right':["b", "a"],
 	'out': [ADD, COPY, DELETE]
+	},{
+	'left':["a", "b"],
+	'right':["a", "a"],
+	'out': [COPY, DELETE, ADD]
+	},{
+	'left':["a", "b"],
+	'right':["a", "c", "b"],
+	'out': [COPY, ADD, COPY]
+	},{
+	'left':["a", "b"],
+	'right':["a", "a", "b"],
+	'out': [COPY, ADD, COPY]
+	},{
+	'left':["a", "b", "d"],
+	'right':["a", "c"],
+	'out': [COPY, DELETE, DELETE, ADD]
 }];
 
 function runTests() {
