@@ -13,12 +13,13 @@
     <button style='display: block; clear:both;' onclick="webDiff()">Compare</button>
     <div id='output'></div>
 </body>
-<script type="text/javascript" src="diff.js"></script>
+<script type="text/javascript" src="diff.js"></script> 
 <script type="text/javascript">
     function webDiff() {
         var leftText = document.getElementById("left").value.split("\n");
         var rightText = document.getElementById("right").value.split("\n");
         var output  = diff(leftText,rightText);
+        
         
         document.getElementById("output").textContent= output;
     }
